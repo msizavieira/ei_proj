@@ -90,10 +90,8 @@ function draw() {
 function touchStarted() {
   isDrawing = true;
   Tone.start();
-  return false;
 }
 
 function touchEnded() {
   isDrawing = false;
-  return false;
 }
