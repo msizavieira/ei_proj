@@ -7,7 +7,7 @@ let triggerInterval = 50; // milliseconds (adjust as needed)
 
 
 function setup() {
-  createCanvas(windowWidth/2, windowHeight/2);
+  createCanvas(windowWidth, windowHeight);
   background(0);
   
   let started = false;
@@ -87,13 +87,13 @@ function draw() {
   }
 }
 
-function mousePressed() {
+function touchStarted() {
   isDrawing = true;
   Tone.start();
   return false;
 }
 
-function mouseReleased() {
+function touchEnded() {
   isDrawing = false;
   return false;
 }
