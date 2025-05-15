@@ -2,15 +2,13 @@ let synth;
 let isDrawing = false;
 let selectedMode = 'white';
 let clr = 'white';
-let lastTriggerTime = 0;
-let triggerInterval = 50; // milliseconds (adjust as needed)
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(0);
   
-  /*let started = false;
+  let started = false;
 
   if (!started) {
     let startButton = createButton('Start Sound');
@@ -39,7 +37,7 @@ function setup() {
   redclr.mousePressed(() => synthclrsetup('red'));
   whiteclr.mousePressed(() => synthclrsetup('white'));
   blueclr.mousePressed(() => synthclrsetup('blue'));
-  clearButton.mousePressed(() => {background(0)});*/
+  clearButton.mousePressed(() => {background(0)});
 
   // Setup a basic synth
   synth = new Tone.MonoSynth().toDestination();
@@ -66,32 +64,31 @@ function synthclrsetup(clr) {
   console.log(clr);
 }
 
-function draw() {
-  if (isDrawing) {
-    // Draw path
-    stroke(selectedMode);
-    strokeWeight(2);
-    line(pmouseX, pmouseY, mouseX, mouseY);
-
-    // Calculate movement speed
-    let dx = mouseX - pmouseX;
-    let dy = mouseY - pmouseY;
-    let speed = sqrt(dx * dx + dy * dy);
-
-    // Map movement to sound parameters
-    let freq = map(mouseX, 0, width, 220, 880);
-    let velocity = map(speed, 0.01, 10, 0.01, 1.0);
-    velocity = constrain(velocity, 0.1, 1.0);
-    
-    synth.triggerAttackRelease(freq, 0.05, undefined, velocity);
-  }
+function touchMoved() {
+  // Calculate movement speed
+  let dx = mouseX - pmouseX;
+  let dy = mouseY - pmouseY;
+  let speed = sqrt(dx * dx + dy * dy);
+  // Map movement to sound parameters
+  let freq = map(mouseX, 0, width, 220, 880);
+  let velocity = map(speed, 0.01, 10, 0.01, 1.0);
+  velocity = constrain(velocity, 0.1, 1.0);
+  let strwgt = map(speed, 1, 10, 1, 10);
+  strwgt = constrain(strwgt, 1, 10);
+  
+  synth.triggerAttackRelease(freq, 0.05, undefined, velocity);
+  
+  // Draw path
+  stroke(selectedMode);
+  strokeWeight(strwgt);
+  line(pmouseX, pmouseY, mouseX, mouseY);
 }
 
-function touchStarted() {
+/*function touchStarted() {
   isDrawing = true;
   Tone.start();
 }
 
 function touchEnded() {
   isDrawing = false;
-}
+}*/
