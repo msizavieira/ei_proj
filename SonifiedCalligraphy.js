@@ -10,7 +10,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(0);
   
-  let started = false;
+  /*let started = false;
 
   if (!started) {
     let startButton = createButton('Start Sound');
@@ -39,7 +39,7 @@ function setup() {
   redclr.mousePressed(() => synthclrsetup('red'));
   whiteclr.mousePressed(() => synthclrsetup('white'));
   blueclr.mousePressed(() => synthclrsetup('blue'));
-  clearButton.mousePressed(() => {background(0)});
+  clearButton.mousePressed(() => {background(0)});*/
 
   // Setup a basic synth
   synth = new Tone.MonoSynth().toDestination();
