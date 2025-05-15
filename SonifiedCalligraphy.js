@@ -90,8 +90,10 @@ function draw() {
 function mousePressed() {
   isDrawing = true;
   Tone.start();
+  return false;
 }
 
 function mouseReleased() {
   isDrawing = false;
+  return false;
 }
