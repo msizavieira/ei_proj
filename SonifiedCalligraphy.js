@@ -7,21 +7,7 @@ let clr = 'white';
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(0);
-  
-  let started = false;
 
-  if (!started) {
-    let startButton = createButton('Start Sound');
-    startButton.position(width / 2 - 50, height / 2);
-    startButton.mousePressed(() => {
-      Tone.start().then(() => {
-        started = true;
-        startButton.remove(); // Remove the button once it's clicked
-        console.log('Audio started');
-      });
-    });
-  }
-    
   let redclr = createButton('Red');
   redclr.position(0,0);
   let greenclr = createButton('Green');
